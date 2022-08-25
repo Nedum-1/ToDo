@@ -9,6 +9,7 @@ let clear = document.getElementById('clear')
 
 val = c.value
 obj = val.tsk 
+
 task = (val) => {
 let n = document.createElement("div")
 n.classList.add("child")
@@ -57,13 +58,15 @@ if(u.innerText=="Edit"){
     return;
 }
 if(u.innerText=="Save" && e.value!=""){
+    console.log(display)
     u.innerText="Edit";
     e.style.outline = "black"
     e.style.borderColor="black"
     d.style.borderColor="black"
     e.setAttribute("readonly", "readonly");
-    display = display.map((even)=> even == val? even =  e.value : even)
+    display = display.map((even)=> even.id == val.id ? {...even, tsk: e.value} : even)
     localStorage.setItem('todotask', JSON.stringify(display))
+    console.log(display)
     return;
 }
 if(e.value==""){
